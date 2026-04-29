@@ -142,7 +142,7 @@ body {
     gap: 12px;
 }
 
-/* foto */
+/* foto - quiero agregarle animacion despues */
 .hero-foto {
     width: 250px;
     height: 250px;
@@ -248,7 +248,7 @@ body {
     color: var(--texto-suave);
 }
 
-/* tabla */
+/* tabla - hacer responsive para mobile */
 table {
     width: 100%;
     border-collapse: collapse;
