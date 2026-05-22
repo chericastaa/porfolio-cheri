@@ -1,9 +1,6 @@
 # Portfolio — Cheri Castañeda
 
 Portfolio personal desarrollado con HTML y CSS puro como parte de la Tecnicatura Superior en Desarrollo de Software en el IFTS 16.
-
-## Descripción
-
 Sitio web de una sola página con secciones de presentación, servicios, experiencia laboral, habilidades tecnológicas y formulario de contacto.
 
 ## Tecnologías utilizadas
@@ -16,13 +13,13 @@ Sitio web de una sola página con secciones de presentación, servicios, experie
 ## Estructura del proyecto
 
     portfolio-cheri/
-    ├── index.html
-    ├── README.md
-    ├── css/
-    │   └── styles.css
-    └── assets/
-        └── img/
-            └── foto.jpg
+        index.html
+        README.md
+        css/
+           styles.css
+        assets/
+           img/
+               foto.jpg
 
 ## Vista previa
 
@@ -30,4 +27,4 @@ Sitio web de una sola página con secciones de presentación, servicios, experie
 
 ## Autora
 
-Cheri Castañeda Ramirez — [LinkedIn](https://www.linkedin.com/in/cheri-casta%C3%B1eda)
+Cheri Castañeda
