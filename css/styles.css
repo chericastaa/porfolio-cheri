@@ -1,4 +1,5 @@
-/* variables */
+/*///////////////// AJUSTES GENERALES //////////////////*/
+
 :root {
     --morado: #7c3aed;
     --morado-medio: #a855f7;
@@ -10,12 +11,11 @@
     --texto: #1e1b4b;
     --texto-suave: #6b7280;
     --borde: #e9d5ff;
-    --fuente-titulo: Georgia, serif;
-    --fuente-cuerpo: Arial, sans-serif;
+    --fuente-titulo: 'Playfair Display', Georgia, serif;
+    --fuente-cuerpo: 'Poppins', Arial, sans-serif;
     --radio: 16px;
 }
 
-/* reset */
 * {
     margin: 0;
     padding: 0;
@@ -31,9 +31,30 @@ body {
     background-color: var(--fondo);
     color: var(--texto);
     line-height: 1.7;
+    font-size: 1rem;
 }
 
-/* navbar */
+/* pseudoclases de enlaces */
+a:link {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    opacity: 0.75;
+}
+
+/*__________________Navbar____________________________*/
+
 .navbar {
     position: fixed;
     top: 0;
@@ -43,10 +64,12 @@ body {
     background: rgba(255, 255, 255, 0.92);
     border-bottom: 1px solid var(--borde);
     z-index: 100;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 
 .nav-inner {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 24px;
     height: 100%;
@@ -55,11 +78,11 @@ body {
     justify-content: space-between;
 }
 
-.nav-logo {
+.nav-logo:link,
+.nav-logo:visited {
     font-size: 1.4rem;
     font-weight: 800;
     color: var(--morado);
-    text-decoration: none;
     background: var(--morado-suave);
     width: 42px;
     height: 42px;
@@ -67,39 +90,95 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 8px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--texto-suave);
-    font-size: 0.9rem;
-    padding: 6px 14px;
-    border-radius: 999px;
     transition: background 0.2s, color 0.2s;
 }
 
-.nav-links a:hover {
+.nav-logo:hover {
+    background: var(--morado);
+    color: var(--blanco);
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+    gap: 4px;
+}
+
+/* cada li es el contenedor que clipea el efecto agua */
+.nav-links li {
+    position: relative;
+    overflow: hidden;
+    border-radius: 999px;
+}
+
+/* burbuja que sube desde abajo como agua */
+.nav-links li::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: var(--morado-suave);
+    border-radius: 999px;
+    transform: translateY(110%);
+    z-index: 0;
+    /* bajada: cae con gravedad */
+    transition: transform 0.5s cubic-bezier(0.6, 0.05, 0.8, 0.4);
+}
+
+/* subida: efecto agua con rebote suave al llegar arriba */
+.nav-links li:hover::before {
+    transform: translateY(0);
+    transition: transform 0.55s cubic-bezier(0.34, 1.5, 0.64, 1);
+}
+
+.nav-links a:link,
+.nav-links a:visited {
+    position: relative;
+    z-index: 1;
+    color: var(--texto-suave);
+    font-size: 0.88rem;
+    padding: 6px 12px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.25s;
+}
+
+.nav-links a:hover {
     color: var(--morado);
 }
 
-/* hero */
+.nav-links a:active {
+    opacity: 0.8;
+}
+
+/*__________________Portada____________________________*/
+
 .hero {
+    position: relative;
     background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #ec4899 100%);
     min-height: 100vh;
     padding-top: 68px;
     display: flex;
     align-items: center;
+    overflow: hidden;
+}
+
+/* overlay con opacidad para oscurecer el fondo y resaltar el texto */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 0.5;
+    z-index: 0;
 }
 
 .hero-inner {
-    max-width: 1000px;
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    width: 100%;
     margin: 0 auto;
     padding: 80px 24px;
     display: flex;
@@ -116,6 +195,7 @@ body {
     padding: 5px 16px;
     border-radius: 999px;
     margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .hero h1 {
@@ -140,20 +220,24 @@ body {
 .hero-btns {
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
-/* foto - quiero agregarle animacion despues */
 .hero-foto {
     width: 250px;
     height: 250px;
     border-radius: 50%;
     border: 5px solid rgba(255, 255, 255, 0.4);
     object-fit: cover;
+    flex-shrink: 0;
 }
 
-/* botones */
+/*__________________Botones____________________________*/
+
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     text-decoration: none;
     padding: 12px 26px;
     border-radius: 999px;
@@ -161,11 +245,17 @@ body {
     font-size: 0.95rem;
     cursor: pointer;
     border: none;
-    transition: transform 0.2s;
+    transition: transform 0.2s, opacity 0.2s;
+    font-family: var(--fuente-cuerpo);
 }
 
 .btn:hover {
     transform: translateY(-2px);
+}
+
+.btn:active {
+    opacity: 0.85;
+    transform: translateY(0);
 }
 
 .btn-primary {
@@ -179,43 +269,135 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
-/* secciones */
+/* ambos botones del hero: misma base blanca con borde */
+.hero .btn {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.hero .btn:hover {
+    background: var(--morado-suave);
+    color: var(--morado);
+    border-color: var(--morado-suave);
+    transform: translateY(-2px);
+}
+
+/*__________________Secciones____________________________*/
+
 .seccion {
     padding: 90px 24px;
     background-color: var(--fondo);
+}
+
+.seccion-alt {
+    background-color: var(--blanco);
 }
 
 .seccion-oscura {
     background-color: var(--fondo-oscuro);
 }
 
-.seccion-oscura h2 {
+/* combinador directo: el h2 como hijo directo de seccion-oscura > seccion-inner */
+.seccion-oscura > .seccion-inner > h2 {
     color: white;
 }
 
 .seccion-inner {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
-.seccion h2 {
+/* combinador directo: h2 hijo directo del contenedor de sección */
+.seccion-inner > h2 {
     font-family: var(--fuente-titulo);
     font-size: 1.9rem;
-    margin-bottom: 32px;
+    margin-bottom: 12px;
     color: var(--texto);
 }
 
-/* sobre mi */
+.seccion-descripcion {
+    color: var(--texto-suave);
+    font-size: 1rem;
+    margin-bottom: 36px;
+    max-width: 620px;
+}
+
+.seccion-descripcion-clara {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/*__________________Qué hago____________________________*/
+
+.servicios-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+/* combinador directo: cards como hijos directos de la grilla */
+.servicios-grid > .servicio-card {
+    flex: 1 1 200px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 28px 24px;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.servicios-grid > .servicio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.16);
+}
+
+.servicio-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--morado-suave);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+/* combinador descendente: íconos dentro de servicio-icon */
+.servicio-icon i {
+    font-size: 1.4rem;
+    color: var(--morado);
+}
+
+.servicio-card h3 {
+    font-size: 1rem;
+    color: var(--texto);
+    margin-bottom: 8px;
+}
+
+/* combinador descendente: párrafos dentro de las cards de servicio */
+.servicio-card p {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+}
+
+/*__________________Sobre mí____________________________*/
+
 .sobre-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
+    align-items: start;
 }
 
+/* combinador descendente: párrafos dentro de sobre-texto */
 .sobre-texto p {
     color: var(--texto-suave);
     margin-bottom: 16px;
     font-size: 1rem;
+}
+
+.seccion-oscura .sobre-texto p {
+    color: rgba(255, 255, 255, 0.92);
 }
 
 .sobre-datos {
@@ -225,14 +407,47 @@ body {
 }
 
 .dato-card {
-    background: var(--blanco);
+    position: relative;
+    overflow: hidden;
+    background: var(--fondo);
     border: 1px solid var(--borde);
     border-radius: var(--radio);
     padding: 16px;
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.06);
+    /* salida: cae con gravedad */
+    transition: transform 0.5s cubic-bezier(0.6, 0.05, 0.8, 0.4);
+}
+
+.dato-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--morado-suave);
+    border-radius: var(--radio);
+    transform: translateY(110%);
+    z-index: 0;
+    transition: transform 0.5s cubic-bezier(0.6, 0.05, 0.8, 0.4);
+}
+
+/* entrada: sube como agua con rebote */
+.dato-card:hover::before {
+    transform: translateY(0);
+    transition: transform 0.55s cubic-bezier(0.34, 1.5, 0.64, 1);
+}
+
+/* contenido siempre sobre el bubble */
+.dato-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.dato-card span {
+    color: var(--morado);
+    font-size: 1.1rem;
+    margin-top: 2px;
 }
 
 .dato-card strong {
@@ -248,14 +463,15 @@ body {
     color: var(--texto-suave);
 }
 
-/* tabla - hacer responsive para mobile */
+/*__________________Tabla____________________________*/
+
 table {
     width: 100%;
     border-collapse: collapse;
     background: var(--blanco);
     border-radius: var(--radio);
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);
 }
 
 thead tr {
@@ -267,15 +483,37 @@ thead th {
     text-align: left;
     font-size: 0.9rem;
     color: white;
+    font-family: var(--fuente-cuerpo);
+}
+
+/* filas pares */
+tbody tr:nth-child(even) {
+    background-color: var(--blanco);
+    background-image: linear-gradient(to top, var(--morado-suave) 100%, transparent 100%);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% 0%;
+}
+
+/* filas impares */
+tbody tr:nth-child(odd) {
+    background-color: var(--blanco);
+    background-image: linear-gradient(to top, var(--morado-suave) 100%, transparent 100%);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% 0%;
 }
 
 tbody tr {
     border-bottom: 1px solid var(--borde);
-    transition: background 0.15s;
+    /* salida: cae con gravedad */
+    transition: background-size 0.5s cubic-bezier(0.6, 0.05, 0.8, 0.4);
 }
 
+/* entrada: sube como agua con rebote */
 tbody tr:hover {
-    background: var(--morado-suave);
+    background-size: 100% 100%;
+    transition: background-size 0.55s cubic-bezier(0.34, 1.5, 0.64, 1);
 }
 
 tbody tr:last-child {
@@ -288,7 +526,8 @@ tbody td {
     font-size: 0.95rem;
 }
 
-/* formulario */
+/*__________________Formulario____________________________*/
+
 .formulario {
     display: flex;
     flex-direction: column;
@@ -302,7 +541,15 @@ tbody td {
     gap: 18px;
 }
 
-.campo-grupo {
+/* combinador descendente: campos dentro de la fila */
+.form-fila .campo-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+/* combinador directo: campos directos del formulario */
+.formulario > .campo-grupo {
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -312,9 +559,18 @@ label {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--texto);
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-input {
+label i {
+    color: var(--morado);
+    font-size: 0.85rem;
+}
+
+input,
+textarea {
     padding: 13px 16px;
     border: 2px solid var(--borde);
     border-radius: 10px;
@@ -323,9 +579,12 @@ input {
     background: var(--fondo);
     outline: none;
     transition: border-color 0.2s;
+    font-family: var(--fuente-cuerpo);
+    resize: vertical;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
     border-color: var(--morado-medio);
 }
 
@@ -336,19 +595,33 @@ input:focus {
     padding: 15px;
     font-size: 1rem;
     width: 100%;
-    text-align: center;
+    justify-content: center;
 }
 
-/* footer */
+/*__________________Footer____________________________*/
+
 .footer {
     text-align: center;
     padding: 28px 24px;
     background: var(--fondo-oscuro);
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.85rem;
 }
 
-/* timeline experiencia */
+.footer p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.footer i {
+    color: var(--rosa);
+}
+
+/*__________________Experiencia / Timeline____________________________*/
+
 .timeline {
     display: flex;
     flex-direction: column;
@@ -357,12 +630,19 @@ input:focus {
     border-left: 3px solid var(--borde);
 }
 
-.timeline-item {
+/* combinador descendente: items dentro de la timeline */
+.timeline .timeline-item {
     background: var(--blanco);
     border: 1px solid var(--borde);
     border-radius: var(--radio);
     padding: 24px;
     box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.timeline .timeline-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.16);
 }
 
 .timeline-fecha {
@@ -370,7 +650,9 @@ input:focus {
     font-weight: 600;
     color: var(--morado);
     text-transform: uppercase;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     margin-bottom: 8px;
 }
 
@@ -384,6 +666,9 @@ input:focus {
     font-size: 0.9rem;
     color: var(--texto-suave);
     margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .timeline-item ul {
@@ -394,4 +679,142 @@ input:focus {
     font-size: 0.93rem;
     color: var(--texto-suave);
     margin-bottom: 4px;
+}
+
+/*///////////////// RESPONSIVIDAD //////////////////*/
+
+/* Tablet horizontal */
+@media (max-width: 1080px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .servicios-grid > .servicio-card {
+        flex: 1 1 40%;
+    }
+
+    .nav-links a:link,
+    .nav-links a:visited {
+        font-size: 0.82rem;
+        padding: 5px 9px;
+    }
+}
+
+/* Tablet vertical */
+@media (max-width: 768px) {
+    .hero-inner {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 60px 24px;
+        gap: 32px;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+    .descripcion {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-foto {
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .seccion {
+        padding: 60px 20px;
+    }
+
+    .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .servicios-grid > .servicio-card {
+        flex: 1 1 45%;
+    }
+}
+
+/* Mobile 1 */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .seccion-inner > h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-fila {
+        grid-template-columns: 1fr;
+    }
+
+    .sobre-datos {
+        grid-template-columns: 1fr;
+    }
+
+    .servicios-grid > .servicio-card {
+        flex: 1 1 100%;
+    }
+
+    .badge {
+        font-size: 0.78rem;
+    }
+
+    thead th {
+        padding: 12px 14px;
+        font-size: 0.82rem;
+    }
+
+    tbody td {
+        padding: 12px 14px;
+        font-size: 0.88rem;
+    }
+}
+
+/* Mobile 2 */
+@media (max-width: 375px) {
+    body {
+        font-size: 0.9rem;
+    }
+
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .seccion-inner > h2 {
+        font-size: 1.3rem;
+    }
+
+    .btn {
+        font-size: 0.85rem;
+        padding: 10px 18px;
+    }
+
+    .seccion {
+        padding: 48px 16px;
+    }
+
+    .nav-logo:link,
+    .nav-logo:visited {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+
+    .hero-foto {
+        width: 140px;
+        height: 140px;
+    }
 }
