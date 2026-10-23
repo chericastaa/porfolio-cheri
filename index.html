@@ -4,285 +4,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de Cheri Castañeda Ramirez, estudiante de desarrollo de software">
-    <title>Cheri Castañeda | Portfolio</title>
-    <!-- Google Fonts -->
+    <meta name="description" content="Cheri Castañeda, desarrolladora full stack en formación. Proyectos con React, Node.js, PostgreSQL, Docker e IA.">
+    <title>Cheri Castañeda | Desarrolladora full stack</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Estilos -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-    <!-- Navegación -->
-    <nav class="navbar">
-        <div class="nav-inner">
-            <a href="#inicio" class="nav-logo">CC</a>
-            <ul class="nav-links">
-                <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="#que-hago"><i class="fas fa-briefcase"></i> Qué hago</a></li>
-                <li><a href="#sobre-mi"><i class="fas fa-user"></i> Sobre mí</a></li>
-                <li><a href="#experiencia"><i class="fas fa-clock"></i> Experiencia</a></li>
-                <li><a href="#habilidades"><i class="fas fa-star"></i> Habilidades</a></li>
-                <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
-            </ul>
-        </div>
-    </nav>
+    <a href="#proyectos" class="saltar">Ir a los proyectos</a>
 
-    <!-- Portada -->
-    <header class="hero" id="inicio">
-        <div class="hero-inner">
-
-            <div class="hero-texto">
-<h1>Cheri Castañeda</h1>
-                <p class="subtitulo">Estudiante de Desarrollo de Software · IFTS 16</p>
-                <p class="descripcion">
-                    Organizada, proactiva y comprometida. Experiencia en gestión
-                    documental y administración. Construyendo mi camino en el desarrollo web.
-                </p>
-                <div class="hero-btns">
-                    <a href="#contacto" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contactame</a>
-                    <a href="https://www.linkedin.com/in/cheri-casta%C3%B1eda" target="_blank" rel="noopener"
-                        class="btn btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                </div>
-            </div>
-
-            <img src="assets/img/foto.jpg" alt="Foto de Cheri Castañeda" class="hero-foto" width="250" height="250">
-
+    <!-- navbar -->
+    <header class="nav">
+        <div class="contenedor nav-inner">
+            <a href="#inicio" class="nav-marca">Cheri Castañeda</a>
+            <nav aria-label="Principal">
+                <ul class="nav-links">
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#stack">Stack</a></li>
+                    <li><a href="#experiencia">Experiencia</a></li>
+                </ul>
+            </nav>
+            <a href="#contacto" class="boton boton-chico">Contacto</a>
         </div>
     </header>
 
     <main>
 
-        <!-- Qué hago -->
-        <section class="seccion" id="que-hago">
-            <div class="seccion-inner">
-                <h2>¿Qué hago?</h2>
-                <p class="seccion-descripcion">Combino mis habilidades técnicas con mi experiencia profesional para ofrecer soluciones completas y organizadas.</p>
-                <div class="servicios-grid">
-                    <div class="servicio-card">
-                        <div class="servicio-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Desarrollo Web</h3>
-                        <p>Creo interfaces con HTML, CSS y JavaScript, enfocadas en diseño limpio, accesible y responsivo.</p>
+        <!-- hero -->
+        <section class="hero" id="inicio">
+            <div class="contenedor hero-inner">
+                <div class="hero-texto">
+                    <p class="hero-estado"><span class="punto"></span> Buscando mi primer puesto como desarrolladora</p>
+                    <h1>Hola, soy Cheri. Hago apps completas, del diseño a la base de datos.</h1>
+                    <p class="hero-bajada">
+                        Estudio la Tecnicatura Superior en Desarrollo de Software en el IFTS 16.
+                        Trabajo con React, Node.js y PostgreSQL, levanto todo en Linux con Docker
+                        y le sumo asistentes con IA a mis proyectos.
+                    </p>
+                    <div class="hero-botones">
+                        <a href="#proyectos" class="boton">Ver proyectos</a>
+                        <a href="https://github.com/chericastaa" target="_blank" rel="noopener" class="boton boton-borde"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/cheri-casta%C3%B1eda" target="_blank" rel="noopener" class="boton boton-borde"><i class="fab fa-linkedin"></i> LinkedIn</a>
                     </div>
-                    <div class="servicio-card">
-                        <div class="servicio-icon">
-                            <i class="fas fa-laptop-code"></i>
+                </div>
+
+                <div class="hero-foto">
+                    <img src="assets/img/foto.jpg" alt="Foto de Cheri Castañeda" width="320" height="400" onerror="this.parentElement.classList.add('sin-foto')">
+                    <span class="hero-iniciales" aria-hidden="true">CC</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- proyectos -->
+        <section class="seccion" id="proyectos">
+            <div class="contenedor">
+                <div class="seccion-cabeza revelar">
+                    <h2>Proyectos</h2>
+                    <p>Dos apps full stack que armé en la tecnicatura, con usuarios, roles, base de datos y deploy.</p>
+                </div>
+
+                <article class="proyecto revelar">
+                    <div class="ventana ventana-zaguan" aria-hidden="true">
+                        <div class="ventana-barra"><span></span><span></span><span></span><em>zaguan.app</em></div>
+                        <div class="z-pantalla">
+                            <div class="z-nav"><b>Zaguán</b><i></i><i></i><i></i></div>
+                            <div class="z-hero">
+                                <div class="z-titulo"></div>
+                                <div class="z-titulo z-corto"></div>
+                                <div class="z-buscador"><i></i><i></i><b></b></div>
+                            </div>
+                            <div class="z-fichas">
+                                <div class="z-ficha"><div class="z-foto"></div><i></i><i class="corto"></i><b>$480k</b></div>
+                                <div class="z-ficha"><div class="z-foto z-foto2"></div><i></i><i class="corto"></i><b>$620k</b></div>
+                                <div class="z-ficha"><div class="z-foto z-foto3"></div><i></i><i class="corto"></i><b>$390k</b></div>
+                            </div>
                         </div>
-                        <h3>Programación</h3>
-                        <p>Experiencia en Python, C, C++, C# y Go. Aplico buenas prácticas y estructuras de código claras.</p>
                     </div>
-                    <div class="servicio-card">
-                        <div class="servicio-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h3>Bases de Datos</h3>
-                        <p>Manejo de SQL y MySQL para diseño, consulta y administración de bases de datos relacionales.</p>
+
+                    <div class="proyecto-info">
+                        <p class="proyecto-estado">En desarrollo</p>
+                        <h3>Zaguán</h3>
+                        <p class="proyecto-desc">
+                            Plataforma de alquileres en CABA inspirada en Zonaprop, con una identidad visual
+                            propia basada en la arquitectura porteña.
+                        </p>
+                        <ul class="proyecto-puntos">
+                            <li>Login con roles de inquilino y propietario</li>
+                            <li>Publicación de propiedades con fotos, filtros por barrio y precio, y favoritos</li>
+                            <li>Chat con IA que recomienda propiedades a partir de la base de datos</li>
+                            <li>Todo corre en Ubuntu con Docker</li>
+                        </ul>
+                        <ul class="tags">
+                            <li>React</li><li>Tailwind</li><li>Node.js</li><li>Express</li><li>PostgreSQL</li><li>Docker</li>
+                        </ul>
+                        <a href="https://github.com/chericastaa/zaguan" target="_blank" rel="noopener" class="enlace"><i class="fab fa-github"></i> Ver el código</a>
                     </div>
-                    <div class="servicio-card">
-                        <div class="servicio-icon">
-                            <i class="fas fa-file"></i>
+                </article>
+
+                <article class="proyecto proyecto-invertido revelar">
+                    <div class="ventana ventana-inscripciones" aria-hidden="true">
+                        <div class="ventana-barra"><span></span><span></span><span></span><em>inscripciones.ifts16</em></div>
+                        <div class="i-pantalla">
+                            <div class="i-lateral"><b></b><i class="activo"></i><i></i><i></i><i></i></div>
+                            <div class="i-cuerpo">
+                                <div class="i-titulo"></div>
+                                <div class="i-fila"><i></i><span class="ok">Aprobada</span></div>
+                                <div class="i-fila"><i></i><span class="ok">Aprobada</span></div>
+                                <div class="i-fila"><i></i><span class="cursa">Cursando</span></div>
+                                <div class="i-fila"><i></i><span>Disponible</span></div>
+                            </div>
+                            <div class="i-chat">
+                                <p class="i-msj i-yo">¿A qué materias me puedo anotar?</p>
+                                <p class="i-msj i-bot">Podés cursar Base de Datos II y Redes. Te falta aprobar el final de Programación I para Programación III.</p>
+                            </div>
                         </div>
-                        <h3>Gestión Documental</h3>
-                        <p>Amplia experiencia en administración, control de stock y atención a clientes y proveedores.</p>
+                    </div>
+
+                    <div class="proyecto-info">
+                        <p class="proyecto-estado proyecto-estado-ok">Deployado</p>
+                        <h3>Plataforma de Inscripciones con IA</h3>
+                        <p class="proyecto-desc">
+                            Sistema de inscripciones a materias y finales con arquitectura de microservicios,
+                            armado en equipo para el Proyecto Integrador.
+                        </p>
+                        <ul class="proyecto-puntos">
+                            <li>Planes de estudio reales del IFTS 16, con dos carreras cargadas</li>
+                            <li>Asistente con Gemini que responde dudas de los alumnos sobre su situación</li>
+                            <li>Paneles separados para alumno y administrador</li>
+                            <li>Deployado en una VPS de Oracle Cloud con Ubuntu Server</li>
+                        </ul>
+                        <ul class="tags">
+                            <li>Microservicios</li><li>Node.js</li><li>Gemini API</li><li>Oracle Cloud</li><li>Linux</li>
+                        </ul>
+                        <a href="https://github.com/chericastaa/pp4-plataforma-inscripciones-ia" target="_blank" rel="noopener" class="enlace"><i class="fab fa-github"></i> Ver el código</a>
+                    </div>
+                </article>
+
+                <div class="otros revelar">
+                    <h3>También trabajé en</h3>
+                    <dl class="otros-lista">
+                        <div>
+                            <dt>Redes</dt>
+                            <dd>Servidores TCP y UDP en Node.js: un colector de logs con streams y backpressure, y un recolector con cluster, worker_threads y apagado controlado.</dd>
+                        </div>
+                        <div>
+                            <dt>Backend</dt>
+                            <dd>APIs con Express y SQLite: usuarios con roles y permisos, un ecommerce con carrito y un rate limiter con Redis.</dd>
+                        </div>
+                        <div>
+                            <dt>Testing</dt>
+                            <dd>Casos de prueba funcionales con particiones de equivalencia, pairwise y diagramas de actividad.</dd>
+                        </div>
+                        <div>
+                            <dt>Gestión</dt>
+                            <dd>Planificación de proyectos en equipo: alcance, EDT, cronograma y camino crítico en ProjectLibre.</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <!-- stack -->
+        <section class="seccion seccion-tinta" id="stack">
+            <div class="contenedor">
+                <div class="seccion-cabeza revelar">
+                    <h2>Con qué trabajo</h2>
+                    <p>Lo que uso en mis proyectos y lo que vengo aprendiendo en la tecnicatura.</p>
+                </div>
+                <div class="stack-grilla revelar">
+                    <div class="stack-grupo">
+                        <h3><i class="fas fa-display"></i> Frontend</h3>
+                        <p>HTML, CSS, JavaScript, TypeScript, React, Tailwind</p>
+                    </div>
+                    <div class="stack-grupo">
+                        <h3><i class="fas fa-server"></i> Backend</h3>
+                        <p>Node.js, Express, EJS, APIs REST, JWT, microservicios</p>
+                    </div>
+                    <div class="stack-grupo">
+                        <h3><i class="fas fa-database"></i> Datos</h3>
+                        <p>PostgreSQL, MySQL, SQLite, Redis</p>
+                    </div>
+                    <div class="stack-grupo">
+                        <h3><i class="fab fa-linux"></i> Infra</h3>
+                        <p>Linux, Docker, Docker Compose, Git, Oracle Cloud</p>
+                    </div>
+                    <div class="stack-grupo">
+                        <h3><i class="fas fa-robot"></i> IA</h3>
+                        <p>Gemini API, Ollama para modelos locales</p>
+                    </div>
+                    <div class="stack-grupo">
+                        <h3><i class="fas fa-code"></i> Otros lenguajes</h3>
+                        <p>Python, C, C++, C#, Go</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sobre mi -->
-        <section class="seccion seccion-oscura" id="sobre-mi">
-            <div class="seccion-inner">
-                <h2>Sobre mí</h2>
-                <div class="sobre-grid">
-
-                    <div class="sobre-texto">
-                        <p>
-                            Soy Cheri Castañeda, una persona organizada, proactiva y comprometida con experiencia en gestión
-                            documental, tareas administrativas y atención a proveedores. Me destaco por mi atención al detalle
-                            y mi capacidad de trabajar en entornos exigentes.
-                        </p>
-                        <p>
-                            Actualmente estoy cursando la Tecnicatura Superior en Desarrollo de Software en el IFTS 16,
-                            donde adquiero conocimientos sólidos en programación, bases de datos, diseño web y más.
-                        </p>
-                        <p>
-                            Mi objetivo es combinar mi experiencia profesional previa con las habilidades técnicas que
-                            estoy desarrollando, para crecer como desarrolladora y aportar valor real en proyectos digitales.
-                        </p>
-                    </div>
-
-                    <div class="sobre-datos">
-                        <div class="dato-card">
-                            <span><i class="fas fa-location-dot"></i></span>
-                            <div>
-                                <strong>Ubicación</strong>
-                                <p>Balvanera, CABA</p>
-                            </div>
-                        </div>
-                        <div class="dato-card">
-                            <span><i class="fas fa-envelope"></i></span>
-                            <div>
-                                <strong>Email</strong>
-                                <p>Chericastaa@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="dato-card">
-                            <span><i class="fas fa-phone"></i></span>
-                            <div>
-                                <strong>Teléfono</strong>
-                                <p>+54 9 11 5663-4874</p>
-                            </div>
-                        </div>
-                        <div class="dato-card">
-                            <span><i class="fas fa-graduation-cap"></i></span>
-                            <div>
-                                <strong>Educación</strong>
-                                <p>IFTS 16 · En curso</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Experiencia -->
+        <!-- experiencia -->
         <section class="seccion" id="experiencia">
-            <div class="seccion-inner">
-                <h2>Experiencia</h2>
-
-                <div class="timeline">
-
-                    <article class="timeline-item">
-                        <span class="timeline-fecha"><i class="fas fa-calendar-days"></i> Mar 2024 – Ene 2025</span>
-                        <h3>Encargada de Producción</h3>
-                        <p class="timeline-empresa"><i class="fas fa-building"></i> RPfarma · Laboratorio de Recetas Magistrales</p>
-                        <ul>
-                            <li>Control y seguimiento de documentación de producción y calidad.</li>
-                            <li>Gestión de stock y control de materias primas.</li>
-                            <li>Coordinación con proveedores externos.</li>
-                        </ul>
-                    </article>
-
-                    <article class="timeline-item">
-                        <span class="timeline-fecha"><i class="fas fa-calendar-days"></i> Oct 2023 – Feb 2024</span>
-                        <h3>Agente de Seguros</h3>
-                        <p class="timeline-empresa"><i class="fas fa-building"></i> Libra Seguros</p>
-                        <ul>
-                            <li>Gestión de Broker de seguros.</li>
-                            <li>Emisión y renovación de pólizas.</li>
-                            <li>Control de cobranzas.</li>
-                        </ul>
-                    </article>
-
-                    <article class="timeline-item">
-                        <span class="timeline-fecha"><i class="fas fa-calendar-days"></i> Ene 2021 – Ene 2022</span>
-                        <h3>Atención al Cliente</h3>
-                        <p class="timeline-empresa"><i class="fas fa-building"></i> Peluquería SLB</p>
-                        <ul>
-                            <li>Atención al cliente y tareas administrativas.</li>
-                            <li>Administración de caja.</li>
-                        </ul>
-                    </article>
-
+            <div class="contenedor experiencia-grilla">
+                <div class="seccion-cabeza revelar">
+                    <h2>Experiencia y formación</h2>
+                    <p>Antes de programar trabajé en administración, calidad y atención al cliente. De ahí me quedó el orden y el ojo para el detalle.</p>
                 </div>
+
+                <ol class="linea revelar">
+                    <li>
+                        <span class="linea-fecha">En curso</span>
+                        <h3>Tecnicatura Superior en Desarrollo de Software</h3>
+                        <p class="linea-lugar">IFTS N°16 · Becada</p>
+                    </li>
+                    <li>
+                        <span class="linea-fecha">Actualidad</span>
+                        <h3>Cajera</h3>
+                        <p class="linea-lugar">Coto</p>
+                        <p>Atención al público con mucho volumen de gente, manejo de caja y medios de pago, en turnos rotativos que combino con la tecnicatura.</p>
+                    </li>
+                    <li>
+                        <span class="linea-fecha">Mar 2024 – Ene 2025</span>
+                        <h3>Encargada de Producción</h3>
+                        <p class="linea-lugar">RPfarma, laboratorio de recetas magistrales</p>
+                        <p>Documentación de producción y calidad, control de stock y coordinación con proveedores.</p>
+                    </li>
+                    <li>
+                        <span class="linea-fecha">Oct 2023 – Feb 2024</span>
+                        <h3>Agente de Seguros</h3>
+                        <p class="linea-lugar">Libra Seguros</p>
+                        <p>Emisión y renovación de pólizas, gestión con brokers y control de cobranzas.</p>
+                    </li>
+                    <li>
+                        <span class="linea-fecha">Ene 2021 – Ene 2022</span>
+                        <h3>Atención al Cliente</h3>
+                        <p class="linea-lugar">Peluquería SLB</p>
+                        <p>Atención al público, tareas administrativas y manejo de caja.</p>
+                    </li>
+                </ol>
             </div>
         </section>
 
-        <!-- Tabla de habilidades -->
-        <section class="seccion seccion-oscura" id="habilidades">
-            <div class="seccion-inner">
-                <h2>Habilidades y Tecnologías</h2>
-                <p class="seccion-descripcion seccion-descripcion-clara">Tecnologías que manejo y que planeo aprender próximamente.</p>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th><i class="fas fa-laptop-code"></i> Tecnologías que conozco</th>
-                            <th><i class="fas fa-rocket"></i> Quiero aprender</th>
-                            <th><i class="fas fa-palette"></i> Mis hobbies</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>HTML, CSS, JavaScript</td>
-                            <td>React</td>
-                            <td>Fotografía</td>
-                        </tr>
-                        <tr>
-                            <td>Python, Node.js</td>
-                            <td>TypeScript</td>
-                            <td>Escuchar música</td>
-                        </tr>
-                        <tr>
-                            <td>C, C++, C#, Go</td>
-                            <td>Desarrollo mobile</td>
-                            <td>Ver series</td>
-                        </tr>
-                        <tr>
-                            <td>SQL · MySQL</td>
-                            <td>Bases de datos avanzadas</td>
-                            <td>Diseño gráfico</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-        </section>
-
-        <!-- Formulario de contacto -->
-        <section class="seccion" id="contacto">
-            <div class="seccion-inner">
-                <h2>Contacto</h2>
-                <p class="seccion-descripcion">¿Querés ponerte en contacto? Completá el formulario y te respondo a la brevedad.</p>
-
-                <form class="formulario" action="#" method="post">
-
-                    <div class="form-fila">
-                        <div class="campo-grupo">
-                            <label for="nombre"><i class="fas fa-user"></i> Nombre</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
-                        </div>
-                        <div class="campo-grupo">
-                            <label for="apellido"><i class="fas fa-user"></i> Apellido</label>
-                            <input type="text" id="apellido" name="apellido" placeholder="Tu apellido">
-                        </div>
-                    </div>
-
-                    <div class="campo-grupo">
-                        <label for="email"><i class="fas fa-envelope"></i> Email</label>
-                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com">
-                    </div>
-
-                    <div class="campo-grupo">
-                        <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
-                        <input type="tel" id="telefono" name="telefono" placeholder="+54 11 1234-5678">
-                    </div>
-
-                    <div class="campo-grupo">
-                        <label for="mensaje"><i class="fas fa-comment"></i> Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribí tu mensaje acá..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Enviar mensaje</button>
-
-                </form>
+        <!-- contacto -->
+        <section class="contacto" id="contacto">
+            <div class="contenedor contacto-inner revelar">
+                <h2>¿Charlamos?</h2>
+                <p>Si tenés un puesto junior o una pasantía, me encantaría contarte más de mis proyectos.</p>
+                <a href="mailto:Chericastaa@gmail.com" class="boton boton-grande"><i class="fas fa-envelope"></i> Chericastaa@gmail.com</a>
+                <ul class="contacto-links">
+                    <li><a href="https://www.linkedin.com/in/cheri-casta%C3%B1eda" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    <li><a href="https://github.com/chericastaa" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></li>
+                    <li><a href="tel:+5491156634874"><i class="fas fa-phone"></i> +54 9 11 5663-4874</a></li>
+                    <li><span><i class="fas fa-location-dot"></i> Balvanera, CABA</span></li>
+                </ul>
             </div>
         </section>
 
     </main>
 
-    <!-- Pie de página -->
-    <footer class="footer">
-        <p>© 2026 Cheri Castañeda Ramirez &nbsp;·&nbsp; Hecho con <i class="fas fa-heart"></i> HTML y CSS &nbsp;·&nbsp; IFTS 16</p>
+    <footer class="pie">
+        <div class="contenedor">
+            <p>© 2026 Cheri Castañeda Ramirez. Hecho a mano con HTML y CSS.</p>
+        </div>
     </footer>
+
+    <script>
+        document.documentElement.classList.add('js');
+
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('con-sombra', window.scrollY > 10);
+        });
+
+        const observador = new IntersectionObserver((entradas) => {
+            entradas.forEach((entrada) => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('visible');
+                    observador.unobserve(entrada.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.revelar').forEach((el) => observador.observe(el));
+    </script>
 
 </body>
 
