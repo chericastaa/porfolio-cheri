@@ -269,12 +269,42 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
     <script>
         document.documentElement.classList.add('js');
 
+        const quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const conMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        const mezclar = (a, b, t) => a + (b - a) * t;
+
+        let lenis = null;
+        if (!quieto && window.Lenis) {
+            lenis = new Lenis({ duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4) });
+            const correr = (tiempo) => {
+                lenis.raf(tiempo);
+                requestAnimationFrame(correr);
+            };
+            requestAnimationFrame(correr);
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+            link.addEventListener('click', (e) => {
+                const destino = document.querySelector(link.getAttribute('href'));
+                if (!destino) return;
+                e.preventDefault();
+                if (lenis) lenis.scrollTo(destino, { offset: -80 });
+                else destino.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth' });
+            });
+        });
+
         const nav = document.querySelector('.nav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('con-sombra', window.scrollY > 10);
+        const revisarNav = () => nav.classList.toggle('con-sombra', window.scrollY > 10);
+        window.addEventListener('scroll', revisarNav, { passive: true });
+        revisarNav();
+
+        document.querySelectorAll('.revelar').forEach((el) => {
+            const hermanos = [...el.parentElement.children].filter((h) => h.classList.contains('revelar'));
+            el.style.setProperty('--retraso', hermanos.indexOf(el) * 0.08 + 's');
         });
 
         const observador = new IntersectionObserver((entradas) => {
@@ -284,9 +314,84 @@
                     observador.unobserve(entrada.target);
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
         document.querySelectorAll('.revelar').forEach((el) => observador.observe(el));
+
+        if (conMouse && !quieto) {
+            document.querySelectorAll('.proyecto').forEach((proyecto) => {
+                const ventana = proyecto.querySelector('.ventana');
+                let meta = { x: 0, y: 0, z: 0 };
+                let actual = { x: 0, y: 0, z: 0 };
+                let animando = false;
+
+                const paso = () => {
+                    actual.x = mezclar(actual.x, meta.x, 0.08);
+                    actual.y = mezclar(actual.y, meta.y, 0.08);
+                    actual.z = mezclar(actual.z, meta.z, 0.08);
+                    ventana.style.transform =
+                        `perspective(1000px) rotateX(${actual.y}deg) rotateY(${actual.x}deg) translateY(${actual.z}px)`;
+                    const quieta = Math.abs(actual.x - meta.x) < 0.01 && Math.abs(actual.y - meta.y) < 0.01 && Math.abs(actual.z - meta.z) < 0.01;
+                    if (quieta) animando = false;
+                    else requestAnimationFrame(paso);
+                };
+
+                const arrancar = () => {
+                    if (!animando) {
+                        animando = true;
+                        requestAnimationFrame(paso);
+                    }
+                };
+
+                proyecto.addEventListener('mousemove', (e) => {
+                    const caja = ventana.getBoundingClientRect();
+                    const px = (e.clientX - caja.left) / caja.width - 0.5;
+                    const py = (e.clientY - caja.top) / caja.height - 0.5;
+                    meta = { x: px * 10, y: -py * 8, z: -8 };
+                    arrancar();
+                });
+
+                proyecto.addEventListener('mouseleave', () => {
+                    meta = { x: 0, y: 0, z: 0 };
+                    arrancar();
+                });
+            });
+
+            document.querySelectorAll('.boton').forEach((boton) => {
+                let meta = { x: 0, y: 0 };
+                let actual = { x: 0, y: 0 };
+                let animando = false;
+
+                const paso = () => {
+                    actual.x = mezclar(actual.x, meta.x, 0.15);
+                    actual.y = mezclar(actual.y, meta.y, 0.15);
+                    boton.style.transform = `translate(${actual.x}px, ${actual.y}px)`;
+                    if (Math.abs(actual.x - meta.x) < 0.05 && Math.abs(actual.y - meta.y) < 0.05) animando = false;
+                    else requestAnimationFrame(paso);
+                };
+
+                const arrancar = () => {
+                    if (!animando) {
+                        animando = true;
+                        requestAnimationFrame(paso);
+                    }
+                };
+
+                boton.addEventListener('mousemove', (e) => {
+                    const caja = boton.getBoundingClientRect();
+                    meta = {
+                        x: (e.clientX - caja.left - caja.width / 2) * 0.18,
+                        y: (e.clientY - caja.top - caja.height / 2) * 0.25 - 2
+                    };
+                    arrancar();
+                });
+
+                boton.addEventListener('mouseleave', () => {
+                    meta = { x: 0, y: 0 };
+                    arrancar();
+                });
+            });
+        }
     </script>
 
 </body>
