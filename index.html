@@ -36,10 +36,18 @@
 
         <!-- hero -->
         <section class="hero" id="inicio">
+            <div class="hero-fondos" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="hero-capa" aria-hidden="true"></div>
             <div class="contenedor hero-inner">
                 <div class="hero-texto">
-                    <p class="hero-estado"><span class="punto"></span> Buscando mi primer puesto como desarrolladora</p>
-                    <h1>Hola, soy Cheri. Hago apps completas, del diseño a la base de datos.</h1>
+                    <p class="hero-estado"><span class="punto"></span> Disponible para nuevos proyectos</p>
+                    <h1>Cheri Castañeda</h1>
+                    <p class="hero-rol">Desarrolladora full stack</p>
                     <p class="hero-bajada">
                         Estudio la Tecnicatura Superior en Desarrollo de Software en el IFTS 16.
                         Trabajo con React, Node.js y PostgreSQL, levanto todo en Linux con Docker
@@ -73,14 +81,16 @@
                         <div class="z-pantalla">
                             <div class="z-nav"><b>Zaguán</b><i></i><i></i><i></i></div>
                             <div class="z-hero">
-                                <div class="z-titulo"></div>
-                                <div class="z-titulo z-corto"></div>
-                                <div class="z-buscador"><i></i><i></i><b></b></div>
+                                <div class="z-fondos"><span></span><span></span><span></span></div>
+                                <div class="z-hero-texto">
+                                    <p>Encontrá tu lugar en Buenos Aires</p>
+                                    <div class="z-buscador"><i></i><i></i><b></b></div>
+                                </div>
                             </div>
                             <div class="z-fichas">
-                                <div class="z-ficha"><div class="z-foto"></div><i></i><i class="corto"></i><b>$480k</b></div>
-                                <div class="z-ficha"><div class="z-foto z-foto2"></div><i></i><i class="corto"></i><b>$620k</b></div>
-                                <div class="z-ficha"><div class="z-foto z-foto3"></div><i></i><i class="corto"></i><b>$390k</b></div>
+                                <div class="z-ficha"><div class="z-foto-marco"><div class="z-foto"></div></div><i></i><i class="corto"></i><b>$480k</b></div>
+                                <div class="z-ficha"><div class="z-foto-marco"><div class="z-foto z-foto2"></div></div><i></i><i class="corto"></i><b>$620k</b></div>
+                                <div class="z-ficha"><div class="z-foto-marco"><div class="z-foto z-foto3"></div></div><i></i><i class="corto"></i><b>$390k</b></div>
                             </div>
                         </div>
                     </div>
@@ -249,8 +259,8 @@
         <!-- contacto -->
         <section class="contacto" id="contacto">
             <div class="contenedor contacto-inner revelar">
-                <h2>¿Charlamos?</h2>
-                <p>Si tenés un puesto junior o una pasantía, me encantaría contarte más de mis proyectos.</p>
+                <h2>Contacto</h2>
+                <p>Escribime por mail o por LinkedIn y te respondo.</p>
                 <a href="mailto:Chericastaa@gmail.com" class="boton boton-grande"><i class="fas fa-envelope"></i> Chericastaa@gmail.com</a>
                 <ul class="contacto-links">
                     <li><a href="https://www.linkedin.com/in/cheri-casta%C3%B1eda" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
@@ -269,33 +279,9 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
     <script>
         document.documentElement.classList.add('js');
 
-        const quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const conMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-        const mezclar = (a, b, t) => a + (b - a) * t;
-
-        let lenis = null;
-        if (!quieto && window.Lenis) {
-            lenis = new Lenis({ duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4) });
-            const correr = (tiempo) => {
-                lenis.raf(tiempo);
-                requestAnimationFrame(correr);
-            };
-            requestAnimationFrame(correr);
-        }
-
-        document.querySelectorAll('a[href^="#"]').forEach((link) => {
-            link.addEventListener('click', (e) => {
-                const destino = document.querySelector(link.getAttribute('href'));
-                if (!destino) return;
-                e.preventDefault();
-                if (lenis) lenis.scrollTo(destino, { offset: -80 });
-                else destino.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth' });
-            });
-        });
 
         const nav = document.querySelector('.nav');
         const revisarNav = () => nav.classList.toggle('con-sombra', window.scrollY > 10);
@@ -318,80 +304,39 @@
 
         document.querySelectorAll('.revelar').forEach((el) => observador.observe(el));
 
-        if (conMouse && !quieto) {
-            document.querySelectorAll('.proyecto').forEach((proyecto) => {
-                const ventana = proyecto.querySelector('.ventana');
-                let meta = { x: 0, y: 0, z: 0 };
-                let actual = { x: 0, y: 0, z: 0 };
-                let animando = false;
+        document.querySelectorAll('.boton').forEach((boton) => {
+            let meta = { x: 0, y: 0 };
+            let actual = { x: 0, y: 0 };
+            let andando = false;
 
-                const paso = () => {
-                    actual.x = mezclar(actual.x, meta.x, 0.08);
-                    actual.y = mezclar(actual.y, meta.y, 0.08);
-                    actual.z = mezclar(actual.z, meta.z, 0.08);
-                    ventana.style.transform =
-                        `perspective(1000px) rotateX(${actual.y}deg) rotateY(${actual.x}deg) translateY(${actual.z}px)`;
-                    const quieta = Math.abs(actual.x - meta.x) < 0.01 && Math.abs(actual.y - meta.y) < 0.01 && Math.abs(actual.z - meta.z) < 0.01;
-                    if (quieta) animando = false;
-                    else requestAnimationFrame(paso);
-                };
+            const pintar = () => {
+                actual.x += (meta.x - actual.x) * 0.07;
+                actual.y += (meta.y - actual.y) * 0.07;
+                boton.style.setProperty('--x', actual.x + 'px');
+                boton.style.setProperty('--y', actual.y + 'px');
+                if (Math.abs(meta.x - actual.x) > 0.3 || Math.abs(meta.y - actual.y) > 0.3) requestAnimationFrame(pintar);
+                else andando = false;
+            };
 
-                const arrancar = () => {
-                    if (!animando) {
-                        animando = true;
-                        requestAnimationFrame(paso);
-                    }
-                };
+            const seguir = (e) => {
+                const caja = boton.getBoundingClientRect();
+                meta = { x: e.clientX - caja.left, y: e.clientY - caja.top };
+                if (!andando) {
+                    andando = true;
+                    requestAnimationFrame(pintar);
+                }
+            };
 
-                proyecto.addEventListener('mousemove', (e) => {
-                    const caja = ventana.getBoundingClientRect();
-                    const px = (e.clientX - caja.left) / caja.width - 0.5;
-                    const py = (e.clientY - caja.top) / caja.height - 0.5;
-                    meta = { x: px * 10, y: -py * 8, z: -8 };
-                    arrancar();
-                });
-
-                proyecto.addEventListener('mouseleave', () => {
-                    meta = { x: 0, y: 0, z: 0 };
-                    arrancar();
-                });
+            boton.addEventListener('mouseenter', (e) => {
+                const caja = boton.getBoundingClientRect();
+                actual = { x: e.clientX - caja.left, y: e.clientY - caja.top };
+                boton.style.setProperty('--d', Math.max(caja.width, caja.height) * 3 + 'px');
+                seguir(e);
             });
+            boton.addEventListener('mousemove', seguir);
+            boton.addEventListener('mouseleave', seguir);
+        });
 
-            document.querySelectorAll('.boton').forEach((boton) => {
-                let meta = { x: 0, y: 0 };
-                let actual = { x: 0, y: 0 };
-                let animando = false;
-
-                const paso = () => {
-                    actual.x = mezclar(actual.x, meta.x, 0.15);
-                    actual.y = mezclar(actual.y, meta.y, 0.15);
-                    boton.style.transform = `translate(${actual.x}px, ${actual.y}px)`;
-                    if (Math.abs(actual.x - meta.x) < 0.05 && Math.abs(actual.y - meta.y) < 0.05) animando = false;
-                    else requestAnimationFrame(paso);
-                };
-
-                const arrancar = () => {
-                    if (!animando) {
-                        animando = true;
-                        requestAnimationFrame(paso);
-                    }
-                };
-
-                boton.addEventListener('mousemove', (e) => {
-                    const caja = boton.getBoundingClientRect();
-                    meta = {
-                        x: (e.clientX - caja.left - caja.width / 2) * 0.18,
-                        y: (e.clientY - caja.top - caja.height / 2) * 0.25 - 2
-                    };
-                    arrancar();
-                });
-
-                boton.addEventListener('mouseleave', () => {
-                    meta = { x: 0, y: 0 };
-                    arrancar();
-                });
-            });
-        }
     </script>
 
 </body>
